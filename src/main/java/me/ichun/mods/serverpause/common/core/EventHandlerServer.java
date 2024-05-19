@@ -29,7 +29,7 @@ public abstract class EventHandlerServer
         pauseState.put(player.getGameProfile().getId(), false);
         checkAndUpdatePauseState();
         //send message if config for per-player
-        if(!(!ServerPause.modProxy.getServer().isDedicatedServer() && pauseState.size() == 1) && ServerPause.config.sendChatMessageWhenPlayerPauseStateChanges.get())
+        if(!(!ServerPause.modProxy.getServer().isDedicatedServer() && pauseState.size() == 1) && ServerPause.config.sendChatMessageWhenPlayerPauseStateChanges)
         {
             int pauseCount = 0;
             for(Map.Entry<UUID, Boolean> e : pauseState.entrySet())
@@ -50,7 +50,7 @@ public abstract class EventHandlerServer
         if(isPaused)
         {
             ServerPause.channel.sendTo(new PacketServerPause(true), (ServerPlayer)player);
-            if(!(!ServerPause.modProxy.getServer().isDedicatedServer() && pauseState.size() == 1) && (forcePause || wasForcePaused || ServerPause.config.sendChatMessageWhenPauseStateChanges.get()))
+            if(!(!ServerPause.modProxy.getServer().isDedicatedServer() && pauseState.size() == 1) && (forcePause || wasForcePaused || ServerPause.config.sendChatMessageWhenPauseStateChanges))
             {
                 player.sendSystemMessage(Component.translatable("serverpause.message.paused"));
             }
@@ -67,7 +67,7 @@ public abstract class EventHandlerServer
     {
         Boolean wasPaused = pauseState.put(player.getGameProfile().getId(), paused);
         //send message if config for per-player
-        if(ServerPause.modProxy.getServer() != null && !(!ServerPause.modProxy.getServer().isDedicatedServer() && pauseState.size() == 1) && ServerPause.config.sendChatMessageWhenPlayerPauseStateChanges.get() && (wasPaused == null || wasPaused != paused))
+        if(ServerPause.modProxy.getServer() != null && !(!ServerPause.modProxy.getServer().isDedicatedServer() && pauseState.size() == 1) && ServerPause.config.sendChatMessageWhenPlayerPauseStateChanges && (wasPaused == null || wasPaused != paused))
         {
             String playerName = player.getGameProfile().getName();
             int pauseCount = 0;
@@ -104,12 +104,12 @@ public abstract class EventHandlerServer
 
     public void checkAndUpdatePauseState()
     {
-        boolean shouldPause = ServerPause.config.pauseWhenAllPlayersPaused.get();
+        boolean shouldPause = ServerPause.config.pauseWhenAllPlayersPaused;
         if(pauseState.isEmpty())
         {
-            shouldPause = (forcePause || ServerPause.config.pauseWhenNoPlayers.get()) && ServerPause.modProxy.getServer() != null && ServerPause.modProxy.getServer().isDedicatedServer(); //DO NOT PAUSE INTEGRATED SERVERS WITH NO PLAYERS
+            shouldPause = (forcePause || ServerPause.config.pauseWhenNoPlayers) && ServerPause.modProxy.getServer() != null && ServerPause.modProxy.getServer().isDedicatedServer(); //DO NOT PAUSE INTEGRATED SERVERS WITH NO PLAYERS
         }
-        else if(!forcePause && ServerPause.config.pauseWhenAllPlayersPaused.get())
+        else if(!forcePause && ServerPause.config.pauseWhenAllPlayersPaused)
         {
             for(Map.Entry<UUID, Boolean> e : pauseState.entrySet())
             {
@@ -127,7 +127,7 @@ public abstract class EventHandlerServer
 
             ServerPause.channel.sendToAll(new PacketServerPause(isPaused));
 
-            if(!(!ServerPause.modProxy.getServer().isDedicatedServer() && pauseState.size() == 1) && (forcePause || wasForcePaused || ServerPause.config.sendChatMessageWhenPauseStateChanges.get()))
+            if(!(!ServerPause.modProxy.getServer().isDedicatedServer() && pauseState.size() == 1) && (forcePause || wasForcePaused || ServerPause.config.sendChatMessageWhenPauseStateChanges))
             {
                 ServerPause.modProxy.getServer().sendSystemMessage(Component.literal(isPaused ? "Server paused." : "Server unpaused."));
                 MutableComponent chat = Component.translatable(isPaused ? "serverpause.message.paused" : "serverpause.message.unpaused");
@@ -143,7 +143,7 @@ public abstract class EventHandlerServer
     public void resetServer(MinecraftServer server, boolean starting)
     {
         pauseState.clear();
-        isPaused = starting && ServerPause.config.pauseWhenNoPlayers.get() && server.isDedicatedServer(); //DO NOT PAUSE INTEGRATED SERVERS WITH NO PLAYERS
+        isPaused = starting && ServerPause.config.pauseWhenNoPlayers && server.isDedicatedServer(); //DO NOT PAUSE INTEGRATED SERVERS WITH NO PLAYERS
         serverPaused = false;
         forcePause = wasForcePaused = false;
     }

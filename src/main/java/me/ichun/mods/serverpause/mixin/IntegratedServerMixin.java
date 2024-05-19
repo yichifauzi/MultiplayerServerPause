@@ -14,7 +14,7 @@ import java.util.function.BooleanSupplier;
 public abstract class IntegratedServerMixin
 {
     @Inject(method = "tickServer", at = @At("HEAD"), cancellable = true)
-    private void serverpause_onTickServer(BooleanSupplier hasTimeLeft, CallbackInfo ci)
+    private void serverpause$onTickServer(BooleanSupplier hasTimeLeft, CallbackInfo ci)
     {
         MinecraftServer server = ((IntegratedServer)(Object)this);
 

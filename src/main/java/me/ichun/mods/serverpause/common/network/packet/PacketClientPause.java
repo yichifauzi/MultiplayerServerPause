@@ -1,7 +1,7 @@
 package me.ichun.mods.serverpause.common.network.packet;
 
+import me.ichun.mods.ichunutil.common.network.AbstractPacket;
 import me.ichun.mods.serverpause.common.ServerPause;
-import me.ichun.mods.serverpause.common.network.AbstractPacket;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
 

@@ -1,10 +1,11 @@
 package me.ichun.mods.serverpause.common;
 
+import me.ichun.mods.ichunutil.common.iChunUtil;
+import me.ichun.mods.ichunutil.common.network.AbstractPacket;
+import me.ichun.mods.ichunutil.common.network.PacketChannel;
 import me.ichun.mods.serverpause.client.core.EventHandlerClient;
 import me.ichun.mods.serverpause.common.core.Config;
 import me.ichun.mods.serverpause.common.core.EventHandlerServer;
-import me.ichun.mods.serverpause.common.network.AbstractPacket;
-import me.ichun.mods.serverpause.common.network.PacketChannel;
 import me.ichun.mods.serverpause.common.network.packet.PacketClientPause;
 import me.ichun.mods.serverpause.common.network.packet.PacketServerPause;
 import net.minecraft.resources.ResourceLocation;
@@ -33,5 +34,8 @@ public abstract class ServerPause
 
     public static Config config;
 
-    public abstract MinecraftServer getServer();
+    public MinecraftServer getServer()
+    {
+        return iChunUtil.d().getServer();
+    }
 }

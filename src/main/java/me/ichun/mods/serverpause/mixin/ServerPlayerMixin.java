@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class ServerPlayerMixin
 {
     @Inject(method = "doTick", at = @At("HEAD"), cancellable = true)
-    private void serverpause_onDoTick(CallbackInfo ci)
+    private void serverpause$onDoTick(CallbackInfo ci)
     {
         if(ServerPause.eventHandlerServer.serverPaused)
         {

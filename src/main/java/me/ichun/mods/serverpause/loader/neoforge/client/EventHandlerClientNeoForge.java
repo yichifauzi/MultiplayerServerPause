@@ -3,17 +3,14 @@ package me.ichun.mods.serverpause.loader.neoforge.client;
 import me.ichun.mods.serverpause.client.core.EventHandlerClient;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
-import net.neoforged.neoforge.event.TickEvent;
+import net.neoforged.neoforge.client.event.ClientTickEvent;
 
-public class EventHandlerClientNeoforge extends EventHandlerClient
+public class EventHandlerClientNeoForge extends EventHandlerClient
 {
     @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event)
+    public void onClientTick(ClientTickEvent.Post event)
     {
-        if(event.phase.equals(TickEvent.Phase.END))
-        {
-            onClientTickEnd();
-        }
+        onClientTickEnd();
     }
 
     @SubscribeEvent

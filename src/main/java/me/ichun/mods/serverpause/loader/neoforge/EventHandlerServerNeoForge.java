@@ -7,7 +7,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.event.server.ServerStoppingEvent;
 
-public class EventHandlerServerNeoforge extends EventHandlerServer
+public class EventHandlerServerNeoForge extends EventHandlerServer
 {
     @SubscribeEvent
     public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event)
