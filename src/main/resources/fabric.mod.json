@@ -1,18 +1,20 @@
 {
   "schemaVersion": 1,
   "id": "serverpause",
-  "version": "${version}",
+  "version": "${mod_version}",
 
   "name": "Multiplayer Server Pause",
-  "description": "Pauses servers when all connected clients are paused.",
+  "description": "${mod_description}",
   "authors": [
     "iChun"
   ],
   "contact": {
-    "homepage": "https://github.com/iChun/MultiplayerServerPause"
+    "homepage": "${mod_url_home}",
+    "sources": "${mod_url_sources}",
+    "issues": "${mod_url_issues}"
   },
 
-  "license": "GNU Lesser General Public License v3.0",
+  "license": "${mod_license}",
   "icon": "icon.png",
 
   "environment": "*",
@@ -27,14 +29,24 @@
       "me.ichun.mods.serverpause.loader.fabric.client.ModMenuIntegration"
     ]
   },
+
   "mixins": [
     "serverpause.mixins.json"
   ],
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "${mod_url_discord}"
+      }
+    }
+  },
+
   "depends": {
     "fabricloader": ">=0.15.0",
     "fabric-api": "*",
     "minecraft": ">=1.20.6 <1.21",
     "java": ">=21",
-    "ichunutil": "*"
+    "ichunutil": ">=1.0.0"
   }
 }
