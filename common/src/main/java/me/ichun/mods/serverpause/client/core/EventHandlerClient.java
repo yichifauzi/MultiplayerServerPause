@@ -5,7 +5,7 @@ import me.ichun.mods.serverpause.common.ServerPause;
 import me.ichun.mods.serverpause.common.network.packet.PacketClientPause;
 import net.minecraft.client.Minecraft;
 
-public abstract class EventHandlerClient
+public class EventHandlerClient
 {
     public boolean serverPause;
 
@@ -14,6 +14,9 @@ public abstract class EventHandlerClient
     public EventHandlerClient()
     {
         iChunUtil.eC().registerClientTickEndListener(client -> onClientTickEnd());
+
+        iChunUtil.eC().registerOnClientConnectListener(client -> onClientServerConnectionChange());
+        iChunUtil.eC().registerOnClientDisconnectListener(client -> onClientServerConnectionChange());
     }
 
     public void onClientTickEnd()

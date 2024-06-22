@@ -1,6 +1,7 @@
 package me.ichun.mods.serverpause.common.core;
 
 import com.mojang.brigadier.CommandDispatcher;
+import me.ichun.mods.ichunutil.common.iChunUtil;
 import me.ichun.mods.serverpause.common.ServerPause;
 import me.ichun.mods.serverpause.common.network.packet.PacketServerPause;
 import net.minecraft.commands.CommandSourceStack;
@@ -14,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public abstract class EventHandlerServer
+public class EventHandlerServer
 {
     public HashMap<UUID, Boolean> pauseState = new HashMap<>();
     public boolean isPaused; //our reference if the server should be paused or not.
@@ -23,6 +24,17 @@ public abstract class EventHandlerServer
 
     public boolean forcePause;
     public boolean wasForcePaused;
+
+    public EventHandlerServer()
+    {
+        iChunUtil.eS().registerPlayerLoggedInListener(this::onPlayerLogin);
+        iChunUtil.eS().registerPlayerLoggedOutListener(this::onPlayerLogout);
+
+        iChunUtil.eS().registerServerAboutToStartListener(server -> resetServer(server, true));
+        iChunUtil.eS().registerServerStoppingListener(server -> resetServer(server, false));
+
+        iChunUtil.eS().registerCommandRegistrationListener(this::registerPauseCommand);
+    }
 
     public void onPlayerLogin(Player player)
     {

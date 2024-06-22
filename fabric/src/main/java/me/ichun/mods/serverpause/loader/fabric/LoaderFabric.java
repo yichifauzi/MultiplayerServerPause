@@ -4,6 +4,7 @@ import me.ichun.mods.ichunutil.common.iChunUtil;
 import me.ichun.mods.ichunutil.loader.fabric.PacketChannelFabric;
 import me.ichun.mods.serverpause.common.ServerPause;
 import me.ichun.mods.serverpause.common.core.Config;
+import me.ichun.mods.serverpause.common.core.EventHandlerServer;
 import net.fabricmc.api.ModInitializer;
 
 public class LoaderFabric extends ServerPause
@@ -14,7 +15,7 @@ public class LoaderFabric extends ServerPause
     {
         modProxy = this;
 
-        eventHandlerServer = new EventHandlerServerFabric();
+        eventHandlerServer = new EventHandlerServer();
 
         channel = new PacketChannelFabric(CHANNEL_ID, PACKET_TYPES);
 

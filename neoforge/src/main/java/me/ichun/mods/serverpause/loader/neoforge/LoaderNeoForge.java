@@ -2,9 +2,10 @@ package me.ichun.mods.serverpause.loader.neoforge;
 
 import me.ichun.mods.ichunutil.common.iChunUtil;
 import me.ichun.mods.ichunutil.loader.neoforge.PacketChannelNeoForge;
+import me.ichun.mods.serverpause.client.core.EventHandlerClient;
 import me.ichun.mods.serverpause.common.ServerPause;
 import me.ichun.mods.serverpause.common.core.Config;
-import me.ichun.mods.serverpause.loader.neoforge.client.EventHandlerClientNeoForge;
+import me.ichun.mods.serverpause.common.core.EventHandlerServer;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -21,14 +22,14 @@ public class LoaderNeoForge extends ServerPause
         modEventBus.addListener(this::onClientSetup);
         modEventBus.addListener(this::registerPayloadHandler);
 
-        NeoForge.EVENT_BUS.register(eventHandlerServer = new EventHandlerServerNeoForge());
+        NeoForge.EVENT_BUS.register(eventHandlerServer = new EventHandlerServer());
 
         config = iChunUtil.d().registerConfig(new Config());
     }
 
     private void onClientSetup(FMLClientSetupEvent event)
     {
-        NeoForge.EVENT_BUS.register(eventHandlerClient = new EventHandlerClientNeoForge());
+        NeoForge.EVENT_BUS.register(eventHandlerClient = new EventHandlerClient());
     }
 
     private void registerPayloadHandler(RegisterPayloadHandlersEvent event)
