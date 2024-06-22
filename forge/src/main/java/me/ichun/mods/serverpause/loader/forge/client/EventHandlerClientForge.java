@@ -8,12 +8,9 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class EventHandlerClientForge extends EventHandlerClient
 {
     @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event)
+    public void onClientTick(TickEvent.ClientTickEvent.Post event)
     {
-        if(event.phase.equals(TickEvent.Phase.END))
-        {
-            onClientTickEnd();
-        }
+        onClientTickEnd();
     }
 
     @SubscribeEvent
