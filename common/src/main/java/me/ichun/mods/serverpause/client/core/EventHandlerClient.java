@@ -1,14 +1,20 @@
 package me.ichun.mods.serverpause.client.core;
 
+import me.ichun.mods.ichunutil.common.iChunUtil;
 import me.ichun.mods.serverpause.common.ServerPause;
 import me.ichun.mods.serverpause.common.network.packet.PacketClientPause;
 import net.minecraft.client.Minecraft;
 
-public class EventHandlerClient
+public abstract class EventHandlerClient
 {
     public boolean serverPause;
 
     public boolean isClientPaused;
+
+    public EventHandlerClient()
+    {
+        iChunUtil.eC().registerClientTickEndListener(client -> onClientTickEnd());
+    }
 
     public void onClientTickEnd()
     {

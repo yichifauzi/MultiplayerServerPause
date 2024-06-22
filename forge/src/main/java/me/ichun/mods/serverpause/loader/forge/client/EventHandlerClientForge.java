@@ -8,12 +8,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 public class EventHandlerClientForge extends EventHandlerClient
 {
     @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent.Post event)
-    {
-        onClientTickEnd();
-    }
-
-    @SubscribeEvent
     public void onClientConnect(ClientPlayerNetworkEvent.LoggingIn event)
     {
         onClientServerConnectionChange();

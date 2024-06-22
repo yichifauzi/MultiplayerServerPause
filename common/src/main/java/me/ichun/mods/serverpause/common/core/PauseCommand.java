@@ -14,15 +14,15 @@ public class PauseCommand
 
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("pause").requires(p -> p.hasPermission(4))
-                .executes(context -> {
-                    if(ServerPause.eventHandlerServer.isPaused && !ServerPause.eventHandlerServer.forcePause)
-                    {
-                        throw ALREADY_PAUSED.create();
-                    }
-                    context.getSource().sendSuccess(() -> Component.translatable(ServerPause.eventHandlerServer.forcePause ? "commands.pause.unpausing" : "commands.pause.pausing"), true);
-                    ServerPause.eventHandlerServer.toggleForcePause();
-                    return Command.SINGLE_SUCCESS;
-                })
+            .executes(context -> {
+                if(ServerPause.eventHandlerServer.isPaused && !ServerPause.eventHandlerServer.forcePause)
+                {
+                    throw ALREADY_PAUSED.create();
+                }
+                context.getSource().sendSuccess(() -> Component.translatable(ServerPause.eventHandlerServer.forcePause ? "commands.pause.unpausing" : "commands.pause.pausing"), true);
+                ServerPause.eventHandlerServer.toggleForcePause();
+                return Command.SINGLE_SUCCESS;
+            })
         );
     }
 }
