@@ -26,7 +26,7 @@
       "me.ichun.mods.serverpause.loader.fabric.client.LoaderFabricClient"
     ],
     "modmenu": [
-      "me.ichun.mods.serverpause.loader.fabric.client.ModMenuIntegration"
+      "me.ichun.mods.ichunutil.loader.fabric.client.ModMenuIntegration"
     ]
   },
 
