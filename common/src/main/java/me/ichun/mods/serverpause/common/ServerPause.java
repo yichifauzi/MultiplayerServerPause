@@ -25,7 +25,7 @@ public abstract class ServerPause
             PacketClientPause.class,
             PacketServerPause.class
     };
-    public static final ResourceLocation CHANNEL_ID = new ResourceLocation(MOD_ID, "channel");
+    public static final ResourceLocation CHANNEL_ID = ResourceLocation.fromNamespaceAndPath(MOD_ID, "channel");
     public static PacketChannel channel;
 
     public static ServerPause modProxy;

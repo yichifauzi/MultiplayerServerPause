@@ -12,6 +12,7 @@
   ],
   "client": [
     "IntegratedServerMixin",
+    "MinecraftAccessorMixin",
     "MinecraftMixin"
   ],
   "injectors": {
